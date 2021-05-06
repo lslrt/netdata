@@ -88,8 +88,9 @@ class Service(LogService):
                 else:
                     self.warning("Unexpected unit found: {}!".format(unit))
                     continue
-            self.bdwth_data.append(int(v))
-            self.info("{} added to the queue".format(int(v)))
+
+                self.bdwth_data.append(int(v))
+                self.info("added to the queue".format(int(v)))
 
         # dequeue the bdwth_data list
         if self.bdwth_data:
