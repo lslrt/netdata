@@ -24,7 +24,7 @@ CHARTS = {
 }
 
 RE_PORT = re.compile(r'Server listening on (\d+)')
-RE_BDWTH = re.compile(r'(\d+\.?\d*) ([KMG]?bits)/sec\s*\n')
+RE_BDWTH = re.compile(r'(\d+\.?\d*) ([KMG]?bits)/sec')
 
 class Service(LogService):
     def __init__(self, configuration=None, name=None):
