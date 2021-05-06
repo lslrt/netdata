@@ -24,7 +24,7 @@ CHARTS = {
 }
 
 RE_PORT = re.compile(r'Server listening on (\d+)')
-RE_BDWTH = re.compile(r'(\d+\.?\d*) ([KMG]?bits)/sec')
+RE_BDWTH = re.compile(r'(\d+\.?\d*)-(\d+\.?\d*).*?(\d+\.?\d*) ([KMG]?bits)/sec')
 
 class Service(LogService):
     def __init__(self, configuration=None, name=None):
@@ -72,7 +72,10 @@ class Service(LogService):
             tuple = RE_BDWTH.findall(l)
             v = 0
             if tuple:
-                value, unit = tuple[0]
+                start, stop, value, unit = tuple[0]
+                # ignore last iperf line that is garbage
+                if start == stop:
+                    break
                 v = float(value)
                 if unit == "bits":
                     v *= 1
