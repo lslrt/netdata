@@ -24,7 +24,7 @@ CHARTS = {
 }
 
 RE_PORT = re.compile(r'Server listening on (\d+)')
-RE_BDWTH = re.compile(r'(\d+\.?\d*)-(\d+\.?\d*).*?(\d+\.?\d*) ([KMG]?bits)/sec')
+RE_BDWTH = re.compile(r'(\d+\.?\d*)-(\d+\.?\d*).*?(\d+\.?\d*) ([KMGT]?bits)/sec')
 
 class Service(LogService):
     def __init__(self, configuration=None, name=None):
@@ -80,11 +80,13 @@ class Service(LogService):
                 if unit == "bits":
                     v *= 1
                 elif unit == 'Kbits':
-                    v *= 1000
+                    v *= 1e3
                 elif unit == 'Mbits':
-                    v *= 1000000
+                    v *= 1e6
                 elif unit == 'Gbits':
-                    v *= 1000000000
+                    v *= 1e9
+                elif unit == 'Tbits':
+                    v *= 1e12
                 else:
                     self.warning("Unexpected unit found: {}!".format(unit))
                     continue
