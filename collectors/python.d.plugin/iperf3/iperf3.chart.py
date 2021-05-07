@@ -57,10 +57,10 @@ class Service(LogService):
         if not LogService.check(self):
             return False
 
-        self.line_name = self.get_iperf_port_no()
-        if not self.line_name:
+        if not self.get_iperf_port_no():
             return False
 
+        self.line_name = "current_bandwidth"
         self.definitions['Bandwidth']['lines'].append([self.line_name])
 
         return True
