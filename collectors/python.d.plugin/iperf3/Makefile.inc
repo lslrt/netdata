@@ -9,5 +9,4 @@ dist_python_DATA       += iperf3/iperf3.chart.py
 dist_pythonconfig_DATA += iperf3/iperf3.conf
 
 # do not install these files, but include them in the distribution
-dist_noinst_DATA       += iperf3/Makefile.inc
-
+dist_noinst_DATA       += iperf3/Makefile.inc iperf3/README.md
